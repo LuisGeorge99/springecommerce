@@ -14,6 +14,7 @@ public class Orden {
     private Date fechaCreacion;
     private Date fechaRecibida;
     private double total;
+    private double total2;
 
     public Orden() {
     }
