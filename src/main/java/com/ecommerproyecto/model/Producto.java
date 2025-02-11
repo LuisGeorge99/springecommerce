@@ -1,11 +1,9 @@
 package com.ecommerproyecto.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "productos")
 public class Producto {
 
     @Id
@@ -17,6 +15,9 @@ public class Producto {
     private double precio;
     private int cantidad;
 
+    @ManyToOne
+    private Usuario usuario;
+
     public Producto() {
     }
 
@@ -27,6 +28,14 @@ public class Producto {
         this.imagen = imagen;
         this.precio = precio;
         this.cantidad = cantidad;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Integer getId() {
@@ -77,7 +86,6 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
-
     @Override
     public String toString() {
         return "Producto{" +
@@ -87,6 +95,7 @@ public class Producto {
                 ", imagen='" + imagen + '\'' +
                 ", precio=" + precio +
                 ", cantidad=" + cantidad +
+                ", usuario=" + usuario +
                 '}';
     }
 }

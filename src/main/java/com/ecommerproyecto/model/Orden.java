@@ -1,11 +1,11 @@
 package com.ecommerproyecto.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
+@Entity
+@Table(name = "ordenes")
 public class Orden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,12 @@ public class Orden {
     private Date fechaCreacion;
     private Date fechaRecibida;
     private double total;
-    private double total2;
+
+    @ManyToOne
+    private Usuario usuario;
+
+    @OneToOne(mappedBy = "orden")
+    private DetalleOrden detalle;
 
     public Orden() {
     }
@@ -25,6 +30,22 @@ public class Orden {
         this.fechaCreacion = fechaCreacion;
         this.fechaRecibida = fechaRecibida;
         this.total = total;
+    }
+
+    public DetalleOrden getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(DetalleOrden detalle) {
+        this.detalle = detalle;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Integer getId() {
@@ -66,6 +87,9 @@ public class Orden {
     public void setTotal(double total) {
         this.total = total;
     }
+
+
+
 
     @Override
     public String toString() {

@@ -1,11 +1,11 @@
 package com.ecommerproyecto.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
+@Table(name = "detalles")
 public class DetalleOrden {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -14,6 +14,13 @@ public class DetalleOrden {
     private double cantidad;
     private double precio;
     private double total;
+
+    @OneToOne
+    private Orden orden;
+
+    @ManyToOne
+    private Producto producto;
+
 
     public DetalleOrden() {
     }
@@ -24,6 +31,22 @@ public class DetalleOrden {
         this.cantidad = cantidad;
         this.precio = precio;
         this.total = total;
+    }
+
+    public Orden getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Orden orden) {
+        this.orden = orden;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Integer getId() {
