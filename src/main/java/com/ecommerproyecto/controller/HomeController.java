@@ -3,7 +3,9 @@ package com.ecommerproyecto.controller;
 import com.ecommerproyecto.model.DetalleOrden;
 import com.ecommerproyecto.model.Orden;
 import com.ecommerproyecto.model.Producto;
+import com.ecommerproyecto.model.Usuario;
 import com.ecommerproyecto.repository.ProductoRepository;
+import com.ecommerproyecto.service.IUsuarioService;
 import com.ecommerproyecto.service.ProductoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +26,9 @@ public class HomeController {
 
     @Autowired
     private ProductoService productoService;
+
+    @Autowired
+    private IUsuarioService usuarioService;
 
     //para almacenar los detalles de la orden
     private List<DetalleOrden> detalleOrdens = new ArrayList<DetalleOrden>();
@@ -131,7 +136,15 @@ public class HomeController {
 
 
     @GetMapping("/order")
-    public String order() {
+    public String order(Model model) {
+        Usuario usuario = usuarioService.findById(1).get();
+
+
+        model.addAttribute("cart", detalleOrdens);
+        model.addAttribute("orden", orden);
+        model.addAttribute("usuario", usuario);
+
+
         return "/usuario/resumenorden";
     }
 
