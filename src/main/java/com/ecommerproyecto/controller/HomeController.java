@@ -4,7 +4,6 @@ import com.ecommerproyecto.model.DetalleOrden;
 import com.ecommerproyecto.model.Orden;
 import com.ecommerproyecto.model.Producto;
 import com.ecommerproyecto.model.Usuario;
-import com.ecommerproyecto.repository.ProductoRepository;
 import com.ecommerproyecto.service.IUsuarioService;
 import com.ecommerproyecto.service.ProductoService;
 import org.slf4j.Logger;
